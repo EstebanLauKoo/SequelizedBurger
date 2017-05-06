@@ -1,0 +1,17 @@
+body {
+    background-color:  #333;
+    color: #ffcc00
+}
+.jumbotron {
+    margin-top: 30px;
+    text-align: center;
+    background-color: #dd1021;
+}
+.lead {
+    padding-top: 15px;
+    text-align: center;
+    font-weight: 600;
+}
+.list-group-item {
+    background-color: #dd1021;
+}
