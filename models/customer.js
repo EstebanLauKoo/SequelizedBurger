@@ -4,7 +4,17 @@
 module.exports = function(sequelize, DataTypes) {
     var Customer = sequelize.define("Customer", {
             // Giving the Author model a name of type STRING
-            name: DataTypes.STRING
+            name: DataTypes.STRING,
+            updatedAt: {
+                type: DataTypes.DATE(3),
+                allowNull: false,
+                defaultValue: sequelize.literal('CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3)')
+            },
+            createdAt: {
+                type: DataTypes.DATE(3),
+                allowNull: false,
+                defaultValue: sequelize.literal('CURRENT_TIMESTAMP(3)')
+            }
         },
         // Here we'll pass a second "classMethods" object into the define method
         // This is for any additional configuration we want to give our models
