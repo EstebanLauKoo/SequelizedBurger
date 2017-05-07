@@ -3,12 +3,18 @@
 // *********************************************************************************
 var express = require("express")
 
+var db = require("../models")
+
 // Routes
 // =============================================================
 module.exports = function(app) {
 
-    // index route loads view.html
     app.get("/", function(req, res) {
-        res.render("index")
-    });
+        db.Burger.findAll({}).then(function (dbBurger) {
+            var hbsObject = {
+                burgers: dbBurger
+            };
+            res.render("index", hbsObject)
+        })
+        });
 };

@@ -1,13 +1,39 @@
+// *********************************************************************************
+// api-routes.js - this file offers a set of routes for displaying and saving data to the db
+// *********************************************************************************
+
+// Dependencies
+// =============================================================
+
+// Requiring our models
+var db = require("../models");
+
+// Routes
+// =============================================================
 module.exports = function(app) {
 
     // GET route for getting all of the posts
-    app.get("/", function(req, res) {
+    app.get("/api/posts", function(req, res) {
+        var query = {};
+        if (req.query.author_id) {
+            query.AuthorId = req.query.author_id;
+        }
         // 1. Add a join here to include all of the Authors to these posts
         db.Post.findAll({
+            where: query,
+            include: [ db.Author ]
         }).then(function(dbPost) {
             res.json(dbPost);
         });
     });
+
+    app.put("/:id", function (req, res) {
+        db.Burger.update({devoured: req.body.devoured}, {
+            where: {id: req.params.id}
+        }).then(function (dbBurger) {
+            res.redirect("/")
+        })
+    })
 
     // Get rotue for retrieving a single post
     app.get("/api/posts/:id", function(req, res) {
@@ -21,9 +47,14 @@ module.exports = function(app) {
             res.json(dbPost);
         });
     });
+    app.post("/", function (req, res) {
+        db.Burger.create({burger_name: req.body.burger_name}).then(function (dbBurger) {
+            res.redirect("/")
+        })
+    })
 
     // POST route for saving a new post
-    app.post("/api/posts", function(req, res) {
+    app.post("/api/post", function(req, res) {
         db.Post.create(req.body).then(function(dbPost) {
             res.json(dbPost);
         });
