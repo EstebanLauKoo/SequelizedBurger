@@ -1,23 +1,40 @@
-// Import the ORM to create functions that will interact with the database.
-var orm = require("../config/orm.js");
-
-var burger = {
-    selectAll: function(cb) {
-        orm.selectAll("burgers", function(res) {
-            cb(res);
-        });
-    },
-    insertOne: function (cols, vals, cb) {
-        orm.insertOne("burgers", cols, vals, function (res) {
-            cb(res);
-        });
-    },
-    updateOne: function (objColVals, condition, cb) {
-        orm.updateOne("burgers", objColVals, condition, function (res) {
-            cb(res)
-        })
-    }
+module.exports = function(sequelize, DataTypes) {
+    var Burger = sequelize.define("Burger", {
+            id: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                primaryKey: true,
+            },
+            burger_name: {
+                type: DataTypes.STRING,
+                allowNull: false,
+                validate: {
+                    len: [1]
+                }
+            },
+            devoured: {
+                type: DataTypes.BOOLEAN,
+                defaultValue: false,
+                allowNull: false
+            },
+            date: {
+                type: DataTypes.DATE,
+                allowNull: false
+            }
+        },
+        {
+            // We're saying that we want our Author to have Posts
+            classMethods: {
+                associate: function(models) {
+                    // An Author (foreignKey) is required or a Post can't be made
+                    Burger.belongsTo(models.Customer, {
+                        foreignKey: {
+                            allowNull: false
+                        }
+                    });
+                }
+            }
+        }
+    );
+    return Burger;
 };
-
-// Export the database functions for the controller (catsController.js).
-module.exports = burger;
