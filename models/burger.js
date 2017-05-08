@@ -33,20 +33,18 @@ module.exports = function(sequelize, DataTypes) {
                 allowNull: false,
                 defaultValue: sequelize.literal('CURRENT_TIMESTAMP(3)')
             }
-        }
-        //{
-       //    // We're saying that we want our Author to have Posts
-       //    classMethods: {
-       //        associate: function(models) {
-       //            // An Author (foreignKey) is required or a Post can't be made
-       //            Burger.belongsTo(models.Customer, {
-                    //                foreignKey: {
-       //                    allowNull: false
-                        //                }
-       //            });
-       //        }
-       //    }
-       //}
+        },
+        {
+           // We're saying that we want our Author to have Posts
+           classMethods: {
+               associate: function(models) {
+                   // An Author (foreignKey) is required or a Post can't be made
+                   Burger.belongsTo(models.Customer, {//                foreignKey: {
+                           allowNull: false//                }
+                   });
+               }
+           }
+       }
     );
     return Burger;
 };
