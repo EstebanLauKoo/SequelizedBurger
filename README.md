@@ -1,6 +1,6 @@
 Eat - da - Burger by Esteban Lau Koo
 =====
-I created a burger logger with a homemade ORM (yum!), MySQL, Node, Express, handlebars using the MVC design pattern.
+I created a burger logger with Sequelize ORM, MySQL, Node, Express, handlebars using the MVC design pattern.
 
 Used Handlebars to generate HTML.
 
@@ -18,7 +18,7 @@ On the right side you will be given an option to also get another of these burge
 
 --Links--
 
-Heroku: https://rocky-beyond-34679.herokuapp.com/
+Heroku: https://young-fortress-18605.herokuapp.com/
 
 ![Alt text](burger.png)
 
