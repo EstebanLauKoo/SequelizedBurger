@@ -19,8 +19,8 @@ module.exports = function(app) {
         });
     });
 
+    db.Customer.create(req.body).then(function(dbCustomer) {
     app.post("/api/customers", function(req, res) {
-        db.Customer.create(req.body).then(function(dbCustomer) {
             res.json(dbCustomer);
         });
     });
@@ -31,7 +31,7 @@ module.exports = function(app) {
                 id: req.params.id
             }
         }).then(function(dbCustomer) {
-            res.json(dbCustomer);
+            res.redirect("/customers");
         });
     });
 

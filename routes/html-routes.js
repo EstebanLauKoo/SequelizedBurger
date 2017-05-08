@@ -17,4 +17,13 @@ module.exports = function(app) {
             res.render("index", hbsObject)
         })
         });
+
+    app.get("/customers", function (req, res) {
+        db.Customer.findAll({}).then(function (dbCustomer) {
+            var hbsObject = {
+                customers: dbCustomer
+            }
+            res.render("customer", hbsObject)
+        })
+    })
 };
