@@ -13,17 +13,13 @@ module.exports = function(app) {
         db.Customer.findOne({
             where: {
                 id: req.params.id
-            }
+            },
+            include: [db.Burger]
         }).then(function(dbCustomer) {
             res.json(dbCustomer);
         });
     });
 
-    db.Customer.create(req.body).then(function(dbCustomer) {
-    app.post("/api/customers", function(req, res) {
-            res.json(dbCustomer);
-        });
-    });
 
     app.delete("/api/customers/:id", function(req, res) {
         db.Customer.destroy({
@@ -34,5 +30,12 @@ module.exports = function(app) {
             res.redirect("/customers");
         });
     });
+
+    //post route to create a new burger
+    app.post("/customers", function (req, res) {
+        db.Customer.create({name: req.body.name}).then(function (dbBurger) {
+            res.redirect("/customers")
+        })
+    })
 
 };

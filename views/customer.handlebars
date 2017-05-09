@@ -21,7 +21,7 @@
 {{#each customers}}
     <tr>
         <td> {{this.name}} </td>
-        <td> <a href="/api/customers/:{{this.id}}" > Go to Burgers </a> </td>
+        <td> <a href="/api/customers/{{this.id}}" > Go to Burgers </a> </td>
         <td>
             <form action="/api/customers/{{this.id}}?_method=DELETE" method="POST">
             <a style="cursor:pointer;color:white" class="delete-author" >Delete Customer</a>
@@ -30,9 +30,9 @@
     </tr>
 {{/each}}
                     <tr id="form-row">
-                        <form id="author-form" action="/" method="Get" >
+                        <form id="author-form" action="/customers" method="POST" >
                             <td colspan="4">
-                                <input placeholder="Enter a name" id="author-name" type="text" />
+                                <input placeholder="Enter a name" id="author-name" type="text"  name="name"/>
                             </td>
                             <td><button type="submit" class="btn btn-success">Create Author</button>
                             </td>
