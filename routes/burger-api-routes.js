@@ -24,7 +24,7 @@ module.exports = function(app) {
     // Get rotue for retrieving a single burger
     app.get("/api/burger/:id", function(req, res) {
         // 2. Add a join here to include the Author who wrote the Post
-        db.Post.findOne({
+        db.Burger.findOne({
             where: {
                 id: req.params.id
             }

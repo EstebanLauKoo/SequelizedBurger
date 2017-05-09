@@ -18,17 +18,21 @@
                     </tr>
                     </thead>
                     <tbody>
-{{#each customers}}
-    <tr>
-        <td> {{this.name}} </td>
-        <td> <a href="/api/customers/{{this.id}}" > Go to Burgers </a> </td>
-        <td>
-            <form action="/api/customers/{{this.id}}?_method=DELETE" method="POST">
-            <a style="cursor:pointer;color:white" class="delete-author" >Delete Customer</a>
-            </form>
-        </td>
-    </tr>
-{{/each}}
+
+                            {{#each customers}}
+                                <tr>
+                                    <td> {{this.name}} </td>
+                                    <td> <a href="/api/customers/{{this.id}}" > Go to Burgers </a> </td>
+
+                                    <form action="/api/customers/{{this.id}}?_method=DELETE" method="POST">
+                                        <td>
+                                            <button type="submit" class="btn btn-success">Delete</button>
+                                        </td>
+                                    </form>
+
+                                </tr>
+                            {{/each}}
+
                     <tr id="form-row">
                         <form id="author-form" action="/customers" method="POST" >
                             <td colspan="4">
@@ -39,10 +43,15 @@
                         </form>
                     </tr>
                     </tbody>
+
                 </table>
+
             </div>
+
         </div>
+
     </div>
+
     </d>
 
 </div>
