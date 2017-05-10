@@ -34,9 +34,14 @@ module.exports = function(app) {
     });
 
     //post route to create a new burger
-    app.post("/", function (req, res) {
-        db.Burger.create({burger_name: req.body.burger_name}).then(function (dbBurger) {
-            res.redirect("/")
+    app.post("/:id", function (req, res) {
+        var directory = "/" + req.params.id
+        db.Burger.create({
+                burger_name: req.body.burger_name,
+                CustomerId: req.params.id
+        })
+            .then(function (dbBurger) {
+            res.redirect(directory)
         })
     })
 

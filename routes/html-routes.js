@@ -15,25 +15,25 @@ module.exports = function(app) {
         }).then(function (dbCustomer) {
             console.log(dbCustomer)
             var hbsObject = {
-                burgers: dbCustomer,
+                Customer: dbCustomer,
             }
-            res.send(hbsObject)
+            res.render("index", hbsObject)
         })
-       //db.Burger.findAll({})
-        //    .then(function (dbBurger) {
-        //    var hbsObject = {
-        //        burgers: dbBurger,
-        //        customers: dbBurger
-        //    };
-        //    res.render("index", hbsObject)
-        //})
-        //db.Customer.findAll({}).then(function (dbCustomer) {
-        //    var hbsObject2 = {
-        //        customers: dbCustomer
-        //    }
-        //    res.render("index", hbsObject2)
-        //})
         });
+    app.get("/:id", function (req, res) {
+        db.Customer.findAll({
+            where: {
+                id: req.params.id
+            },
+            include: [db.Burger]
+        }).then(function (dbCustomer) {
+            var hbsObject = {
+                Customer : dbCustomer
+            }
+
+            res.render("index", hbsObject)
+        })
+    })
 
     app.get("/customers", function (req, res) {
         db.Customer.findAll({}).then(function (dbCustomer) {
