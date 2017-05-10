@@ -10,12 +10,23 @@ var db = require("../models")
 module.exports = function(app) {
 
     app.get("/", function(req, res) {
-        db.Burger.findAll({}).then(function (dbBurger) {
+        db.Customer.findAll({
+            include: [db.Burger]
+        }).then(function (dbCustomer) {
+            console.log(dbCustomer)
             var hbsObject = {
-                burgers: dbBurger
-            };
-            res.render("index", hbsObject)
+                burgers: dbCustomer,
+            }
+            res.send(hbsObject)
         })
+       //db.Burger.findAll({})
+        //    .then(function (dbBurger) {
+        //    var hbsObject = {
+        //        burgers: dbBurger,
+        //        customers: dbBurger
+        //    };
+        //    res.render("index", hbsObject)
+        //})
         //db.Customer.findAll({}).then(function (dbCustomer) {
         //    var hbsObject2 = {
         //        customers: dbCustomer
