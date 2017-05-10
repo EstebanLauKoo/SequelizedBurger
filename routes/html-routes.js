@@ -17,10 +17,11 @@ module.exports = function(app) {
             var hbsObject = {
                 Customer: dbCustomer,
             }
-            res.render("index", hbsObject)
+            res.render("main", hbsObject)
         })
         });
-    app.get("/:id", function (req, res) {
+
+    app.get("/customer/:id", function (req, res) {
         db.Customer.findAll({
             where: {
                 id: req.params.id
@@ -30,12 +31,10 @@ module.exports = function(app) {
             var hbsObject = {
                 Customer : dbCustomer
             }
-
             res.render("index", hbsObject)
         })
     })
-
-    app.get("/customers", function (req, res) {
+    app.get("/customer", function (req, res) {
         db.Customer.findAll({}).then(function (dbCustomer) {
             var hbsObject = {
                 customers: dbCustomer
