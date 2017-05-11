@@ -1,0 +1,22 @@
+
+<div class="container"><div>
+    <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Dropdown
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            {{#each Customer}}
+                <li><a href="/customer/{{this.id}}">{{this.name}}</a></li>
+            {{/each}}
+        </ul>
+    </div>
+    </div>
+    <div class="jumbotron">
+        <img src="/assets/img/burger-outline-filled.png">
+        <h1> Eat-Da-Burger! </h1>
+        <form action="/customerlist" method="GET">
+            <button class="btn btn-default btn-lg" type="submit"> Manage Customers </button>
+        </form>
+    </div>
+</div>

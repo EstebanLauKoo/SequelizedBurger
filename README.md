@@ -8,6 +8,9 @@ Node to connect to MySQL database and Express to handle routing.
 
 --app summary--
 
+This is a little of a different iteration with this one we have attached a relatable database of customers attached to each customer.
+You will have a dropdown menu allowing you to select from a list of customers and it will redirect you to their own page showing their own creations.
+
 Eat-Da-Burger! is a fun app that lets a user input the name of a burger they want to eat.
 
 Once submitted, the burger is displayed in text on the left side of the page where it's waiting to be devoured.
@@ -20,5 +23,13 @@ On the right side you will be given an option to also get another of these burge
 
 Heroku: https://young-fortress-18605.herokuapp.com/
 
-![Alt text](burger.png)
+--Images--
 
+(Ex.1)
+![Alt text](READIMG/burger.png)
+
+(Ex.2)
+![Alt text](READIMG/BobCustomer.png)
+
+(Ex.3)
+![Alt text](READIMG/Customer.png)

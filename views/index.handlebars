@@ -1,10 +1,19 @@
 
 
 <div class="container">
+    <div class="row top-30">
+        <div class="col-md-2 col-sm-2">
+            <a class="btn btn-default" href="/">Home</a>
+        </div>
+    </div>
     <div class="jumbotron">
+        {{#each Customer}}
+            <h1>{{this.name}}</h1>
+        {{/each}}
         <img src="/assets/img/burger-outline-filled.png">
         <h1> Eat-Da-Burger! </h1>
-        <form action="/customer" method="GET">
+
+        <form action="/customerlist" method="GET">
         <button class="btn btn-default btn-lg" type="submit"> Manage Customers </button>
         </form>
     </div>
@@ -22,8 +31,9 @@
                                 <div class="input-group">
                                     <p class="lead"> {{this.burger_name}} </p>
                                     <span class="input-group-btn">
-								<form action="{{this.id}}?_method=PUT" method="POST">
+								<form action="/customer/{{../id}}?_method=PUT" method="POST">
 									<input type="hidden" name="devoured" value="true">
+                                    <input type="hidden" name="id" value="{{this.id}}">
 									<button class="btn btn-default btn-lg" type="submit"> EAT IT! </button>
 								</form>
 							</span>
@@ -49,8 +59,9 @@
                                     <div class="input-group">
                                     <p class="lead">{{this.burger_name}} </p>
                                     <span class="input-group-btn">
-								<form action="{{this.id}}?_method=PUT" method="POST">
+								<form action="/customer/{{../id}}?_method=PUT" method="POST">
 									<input type="hidden" name="devoured" value="false">
+                                    <input type="hidden" name="id" value="{{this.id}}">
 									<button class="btn btn-default btn-lg" type="submit"> Another! </button>
 								</form>
 							</span>
@@ -69,8 +80,7 @@
 
             {{#each Customer}}
             {{!-- section to add burgers --}}
-            <form class="create-update-form" action="/{{this.id}}" method="POST">
-
+            <form class="create-update-form" action="/create/burger/{{this.id}}" method="POST">
                 <div class="form-group">
                     <textarea class="form-control input-lg" type="text" name="burger_name" rows="3"> </textarea>
                 </div>
